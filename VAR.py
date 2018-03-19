@@ -23,7 +23,8 @@ except:
 weight = np.ones(numberofStocks)
 for i in range(numberofStocks):
     stock_list.append(input("Enter ticker for stock " + str(i+1) + ':\n'))
-    new_weight = (float(input("Enter the weight for stock " + str(i + 1) + ':\n')))
+    new_weight = (float(input("Enter the weight for stock " + str(i + 1) + ' \
+(i.e. 0.3, 0.7 ...):\n')))
     if new_weight > 1:
         print("Error Weight Too Large")
         sys.exit()
@@ -31,9 +32,9 @@ for i in range(numberofStocks):
 # ask for and create a list/array of the stock tickers and
 # weights for the stock in our desired portfolio
 
-if np.sum(weight) > 1:
-    print("Error - Sum of Weights too large.")
-    sys.exit()
+if np.sum(weight) > 1 or np.sum(weight) < 1:
+    print("Weights not equal to 1. Re-balancing")
+    weight /= np.sum(weight)
 # The weights must sum up to one
 
 time_horizon = input("What is your time horizon? Enter 1 for a Day,  2 for a Month, \
